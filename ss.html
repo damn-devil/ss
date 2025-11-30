@@ -21,173 +21,41 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        .universe {
+        .plasma-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, #0f0f1f 0%, #000000 100%);
+            background: #000;
             overflow: hidden;
         }
 
-        .quantum-orb {
+        .plasma-canvas {
             position: absolute;
-            top: 50%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: brightness(1.2) contrast(1.3) saturate(1.4);
+        }
+
+        .audio-bars {
+            position: absolute;
+            bottom: 10%;
             left: 50%;
-            width: 80vmin;
-            height: 80vmin;
-            transform: translate(-50%, -50%);
-            filter: blur(1vmin) contrast(1.2);
+            transform: translateX(-50%);
+            display: flex;
+            align-items: end;
+            gap: 3px;
+            height: 60px;
         }
 
-        .energy-ring {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 2vmin solid transparent;
-            border-radius: 50%;
-            animation: spin 8s linear infinite;
-            box-shadow: 
-                0 0 5vmin #00ffff,
-                inset 0 0 5vmin #00ffff;
-        }
-
-        .energy-ring:nth-child(1) {
-            animation-delay: -1s;
-            border-top-color: #ff00ff;
-            border-right-color: #00ffff;
-        }
-
-        .energy-ring:nth-child(2) {
-            animation-delay: -2s;
-            border-bottom-color: #ffff00;
-            border-left-color: #ff00ff;
-            animation-duration: 6s;
-            animation-direction: reverse;
-        }
-
-        .energy-ring:nth-child(3) {
-            animation-delay: -3s;
-            border-top-color: #00ff00;
-            border-left-color: #ff0000;
-            animation-duration: 10s;
-        }
-
-        .particle-field {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .particle {
-            position: absolute;
-            width: 0.4vmin;
-            height: 0.4vmin;
-            background: #00ffff;
-            border-radius: 50%;
-            animation: float 4s infinite ease-in-out;
-        }
-
-        .hologram-grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(90deg, transparent 99%, rgba(0, 255, 255, 0.1) 100%),
-                linear-gradient(0deg, transparent 99%, rgba(255, 0, 255, 0.1) 100%);
-            background-size: 4vmin 4vmin;
-            animation: gridPulse 3s infinite alternate;
-        }
-
-        .neural-network {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .neural-path {
-            position: absolute;
-            width: 0.1vmin;
-            height: 0.1vmin;
-            background: linear-gradient(45deg, #ff00ff, #00ffff);
-            border-radius: 50%;
-            animation: neuralPulse 2s infinite alternate;
-        }
-
-        .quantum-ripple {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 2vmin;
-            height: 2vmin;
-            border: 0.3vmin solid #00ffff;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            animation: ripple 3s infinite linear;
-        }
-
-        .quantum-ripple:nth-child(2) {
-            animation-delay: 1s;
-            border-color: #ff00ff;
-        }
-
-        .quantum-ripple:nth-child(3) {
-            animation-delay: 2s;
-            border-color: #ffff00;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.1); }
-            100% { transform: rotate(360deg) scale(1); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
-            25% { transform: translate(2vmin, -1vmin) scale(1.2); opacity: 0.8; }
-            50% { transform: translate(-1vmin, 2vmin) scale(0.8); opacity: 0.5; }
-            75% { transform: translate(-2vmin, -2vmin) scale(1.1); opacity: 0.7; }
-        }
-
-        @keyframes gridPulse {
-            0% { opacity: 0.1; }
-            100% { opacity: 0.3; }
-        }
-
-        @keyframes neuralPulse {
-            0% { transform: scale(1); opacity: 0.1; }
-            100% { transform: scale(2); opacity: 0.8; }
-        }
-
-        @keyframes ripple {
-            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(20); opacity: 0; }
-        }
-
-        .cyber-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 60vmin;
-            height: 60vmin;
-            transform: translate(-50%, -50%);
-            background: radial-gradient(circle, rgba(0, 255, 255, 0.2) 0%, transparent 70%);
-            animation: glowPulse 4s infinite alternate;
-            filter: blur(2vmin);
-        }
-
-        @keyframes glowPulse {
-            0% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
-            100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.2); }
+        .bar {
+            width: 4px;
+            background: linear-gradient(to top, #00ffff, #ff00ff);
+            border-radius: 2px;
+            transition: height 0.1s ease;
         }
 
         .touch-layer {
@@ -200,38 +68,24 @@
             cursor: pointer;
         }
 
-        /* Адаптация для мобильных */
-        @media (max-width: 768px) {
-            .quantum-orb {
-                width: 90vmin;
-                height: 90vmin;
-            }
-            
-            .energy-ring {
-                border-width: 3vmin;
-            }
+        .pulse-effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 0, 255, 0.8) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
-    <div class="universe">
-        <div class="hologram-grid"></div>
-        
-        <div class="cyber-glow"></div>
-        
-        <div class="quantum-orb">
-            <div class="energy-ring"></div>
-            <div class="energy-ring"></div>
-            <div class="energy-ring"></div>
-        </div>
-        
-        <div class="quantum-ripple"></div>
-        <div class="quantum-ripple"></div>
-        <div class="quantum-ripple"></div>
-        
-        <div class="particle-field" id="particleField"></div>
-        <div class="neural-network" id="neuralNetwork"></div>
-        
+    <div class="plasma-container">
+        <canvas class="plasma-canvas" id="plasmaCanvas"></canvas>
+        <div class="audio-bars" id="audioBars"></div>
         <div class="touch-layer" id="touchLayer"></div>
     </div>
 
@@ -240,79 +94,220 @@
     </audio>
 
     <script>
-        // Создание частиц
-        function createParticles() {
-            const field = document.getElementById('particleField');
-            const particleCount = 150;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
+        class PlasmaVisualizer {
+            constructor() {
+                this.canvas = document.getElementById('plasmaCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.audioBars = document.getElementById('audioBars');
+                this.audioContext = null;
+                this.analyser = null;
+                this.dataArray = null;
+                this.source = null;
+                this.animationId = null;
+                this.time = 0;
                 
-                // Случайная позиция
-                particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.top = Math.random() * 100 + 'vh';
-                
-                // Случайная задержка анимации
-                particle.style.animationDelay = Math.random() * 4 + 's';
-                
-                // Случайный цвет
-                const colors = ['#00ffff', '#ff00ff', '#ffff00', '#00ff00', '#ff0000'];
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                
-                // Случайный размер
-                particle.style.width = particle.style.height = (Math.random() * 0.6 + 0.2) + 'vmin';
-                
-                field.appendChild(particle);
+                this.resize();
+                this.createAudioBars();
+                this.setupEventListeners();
             }
-        }
 
-        // Создание нейронной сети
-        function createNeuralNetwork() {
-            const network = document.getElementById('neuralNetwork');
-            const nodeCount = 80;
-            
-            for (let i = 0; i < nodeCount; i++) {
-                const node = document.createElement('div');
-                node.className = 'neural-path';
+            resize() {
+                this.canvas.width = window.innerWidth * window.devicePixelRatio;
+                this.canvas.height = window.innerHeight * window.devicePixelRatio;
+                this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            }
+
+            createAudioBars() {
+                for (let i = 0; i < 64; i++) {
+                    const bar = document.createElement('div');
+                    bar.className = 'bar';
+                    bar.style.height = '2px';
+                    this.audioBars.appendChild(bar);
+                }
+            }
+
+            setupEventListeners() {
+                window.addEventListener('resize', () => this.resize());
+            }
+
+            initAudioAnalyser(audioElement) {
+                this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                this.analyser = this.audioContext.createAnalyser();
+                this.source = this.audioContext.createMediaElementSource(audioElement);
                 
-                node.style.left = Math.random() * 100 + 'vw';
-                node.style.top = Math.random() * 100 + 'vh';
-                node.style.animationDelay = Math.random() * 2 + 's';
-                node.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                this.source.connect(this.analyser);
+                this.analyser.connect(this.audioContext.destination);
                 
-                network.appendChild(node);
+                this.analyser.fftSize = 256;
+                const bufferLength = this.analyser.frequencyBinCount;
+                this.dataArray = new Uint8Array(bufferLength);
+            }
+
+            renderPlasma() {
+                const width = this.canvas.width / window.devicePixelRatio;
+                const height = this.canvas.height / window.devicePixelRatio;
+                
+                this.ctx.clearRect(0, 0, width, height);
+                
+                let bass = 0;
+                let mid = 0;
+                let high = 0;
+                
+                if (this.analyser && this.dataArray) {
+                    this.analyser.getByteFrequencyData(this.dataArray);
+                    
+                    // Низкие частоты (бас)
+                    for (let i = 0; i < 8; i++) {
+                        bass += this.dataArray[i];
+                    }
+                    bass /= 8;
+                    
+                    // Средние частоты
+                    for (let i = 8; i < 32; i++) {
+                        mid += this.dataArray[i];
+                    }
+                    mid /= 24;
+                    
+                    // Высокие частоты
+                    for (let i = 32; i < 64; i++) {
+                        high += this.dataArray[i];
+                    }
+                    high /= 32;
+                    
+                    // Обновляем аудио бары
+                    this.updateAudioBars();
+                }
+                
+                const bassIntensity = (bass || 50) / 255;
+                const midIntensity = (mid || 50) / 255;
+                const highIntensity = (high || 50) / 255;
+                
+                const imageData = this.ctx.createImageData(width, height);
+                const data = imageData.data;
+                
+                for (let y = 0; y < height; y++) {
+                    for (let x = 0; x < width; x++) {
+                        const i = (y * width + x) * 4;
+                        
+                        // Плазменные уравнения с реакцией на звук
+                        const nx = x / width - 0.5;
+                        const ny = y / height - 0.5;
+                        
+                        const distance = Math.sqrt(nx * nx + ny * ny);
+                        const angle = Math.atan2(ny, nx);
+                        
+                        // Основная плазма с пульсацией от баса
+                        const plasma1 = Math.sin(distance * 20 - this.time * 2 + bassIntensity * 10) * 0.5 + 0.5;
+                        const plasma2 = Math.sin(angle * 8 + this.time * 3 + midIntensity * 8) * 0.5 + 0.5;
+                        const plasma3 = Math.sin((nx * Math.sin(this.time * 0.5) + ny * Math.cos(this.time * 0.3)) * 15 + highIntensity * 12) * 0.5 + 0.5;
+                        
+                        // Комбинированная плазма
+                        const plasma = (plasma1 + plasma2 + plasma3) / 3;
+                        
+                        // Цветовая палитра с реакцией на частоты
+                        const r = Math.floor(plasma1 * 255 * (0.8 + bassIntensity * 0.4));
+                        const g = Math.floor(plasma2 * 255 * (0.6 + midIntensity * 0.6));
+                        const b = Math.floor(plasma3 * 255 * (0.7 + highIntensity * 0.5));
+                        
+                        data[i] = r;     // Red
+                        data[i + 1] = g; // Green
+                        data[i + 2] = b; // Blue
+                        data[i + 3] = 255; // Alpha
+                    }
+                }
+                
+                this.ctx.putImageData(imageData, 0, 0);
+                
+                // Добавляем дополнительные эффекты поверх
+                this.addPostEffects(bassIntensity, midIntensity, highIntensity);
+                
+                this.time += 0.02;
+                this.animationId = requestAnimationFrame(() => this.renderPlasma());
+            }
+
+            addPostEffects(bass, mid, high) {
+                const width = this.canvas.width / window.devicePixelRatio;
+                const height = this.canvas.height / window.devicePixelRatio;
+                
+                // Пульсирующие круги от центра
+                const centerX = width / 2;
+                const centerY = height / 2;
+                
+                // Бас-пульсации
+                const bassRadius = 50 + bass * 100;
+                const gradient1 = this.ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, bassRadius);
+                gradient1.addColorStop(0, `rgba(255, 0, 255, ${0.3 + bass * 0.3})`);
+                gradient1.addColorStop(1, 'rgba(255, 0, 255, 0)');
+                
+                this.ctx.fillStyle = gradient1;
+                this.ctx.fillRect(0, 0, width, height);
+                
+                // Среднечастотные пульсации
+                const midRadius = 30 + mid * 80;
+                const gradient2 = this.ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, midRadius);
+                gradient2.addColorStop(0, `rgba(0, 255, 255, ${0.2 + mid * 0.4})`);
+                gradient2.addColorStop(1, 'rgba(0, 255, 255, 0)');
+                
+                this.ctx.fillStyle = gradient2;
+                this.ctx.fillRect(0, 0, width, height);
+            }
+
+            updateAudioBars() {
+                if (!this.dataArray) return;
+                
+                const bars = this.audioBars.children;
+                for (let i = 0; i < bars.length; i++) {
+                    const value = this.dataArray[Math.floor(i * 2)];
+                    const height = Math.max(2, (value / 255) * 60);
+                    bars[i].style.height = `${height}px`;
+                    bars[i].style.opacity = Math.max(0.3, value / 255);
+                }
+            }
+
+            start() {
+                this.renderPlasma();
+            }
+
+            stop() {
+                if (this.animationId) {
+                    cancelAnimationFrame(this.animationId);
+                }
             }
         }
 
         // Аудио система
         let audioActivated = false;
+        let plasmaVisualizer = null;
         
         function activateAudioSystem() {
             if (audioActivated) return;
             audioActivated = true;
             
             const audio = document.getElementById('audioElement');
-            console.log('🌀 Quantum audio system activated');
+            console.log('🔊 Активация аудио системы');
+            
+            // Инициализируем визуализатор
+            plasmaVisualizer = new PlasmaVisualizer();
             
             // Максимальная громкость
             audio.volume = 1.0;
             
             const playAudio = () => {
                 audio.play().then(() => {
-                    console.log('🔊 Audio playing at maximum volume');
+                    console.log('🎵 Аудио воспроизводится на максимальной громкости');
+                    
+                    // Инициализируем анализатор аудио
+                    plasmaVisualizer.initAudioAnalyser(audio);
+                    plasmaVisualizer.start();
                     
                     // Усиление громкости
                     const volumeBoost = setInterval(() => {
                         audio.volume = 1.0;
                     }, 500);
                     
-                    // Добавляем визуальный эффект при успешном запуске
-                    document.querySelector('.quantum-orb').style.filter = 'blur(1vmin) contrast(1.5) brightness(1.3)';
-                    
                 }).catch(error => {
-                    console.log('⚠️ Audio activation failed, retrying...');
-                    setTimeout(playAudio, 1000);
+                    console.log('⚠️ Ошибка воспроизведения, повтор...');
+                    setTimeout(playAudio, 500);
                 });
             };
             
@@ -321,9 +316,6 @@
 
         // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-            createNeuralNetwork();
-            
             const touchLayer = document.getElementById('touchLayer');
             
             // Обработчики взаимодействия
@@ -338,23 +330,20 @@
             });
             
             // Автозапуск с задержкой
-            setTimeout(activateAudioSystem, 1200);
+            setTimeout(activateAudioSystem, 800);
             
             // Вибрация если доступна
             if (navigator.vibrate) {
-                navigator.vibrate([100, 30, 100, 30, 100]);
+                navigator.vibrate([50, 25, 50, 25, 50]);
             }
         });
 
-        // Динамическое обновление анимации
-        setInterval(() => {
-            const particles = document.querySelectorAll('.particle');
-            particles.forEach(particle => {
-                if (Math.random() > 0.95) {
-                    particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                }
-            });
-        }, 2000);
+        // Обработка изменения размера окна
+        window.addEventListener('resize', () => {
+            if (plasmaVisualizer) {
+                plasmaVisualizer.resize();
+            }
+        });
     </script>
 </body>
 </html>
